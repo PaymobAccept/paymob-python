@@ -19,7 +19,6 @@ class HTTPResource(object):
         """
         Base request headers.
         """
-        print(self.__name__)
         pass
 
 
@@ -28,7 +27,7 @@ class HTTPRequest(object):
     Base HTTP Requester.
     """
 
-    def __init__(self, secret_key):
+    def __init__(self, secret_key: str):
         self.secret_key = secret_key
 
     def request(self):
