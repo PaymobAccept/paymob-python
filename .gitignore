@@ -169,4 +169,7 @@ client/
 bower_components/
 node_modules/
 
+# Marketplace
+next-marketplace
+
 uwsgi.ini
