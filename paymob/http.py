@@ -10,7 +10,7 @@ from paymob.utils import resource_to_url, api_base_url, next_api_version
 
 class HTTPBaseResource(object):
     """
-    Base HTTP Resource class
+    HTTP Resource
     """
 
     RESOURCE_PATH = None
@@ -29,7 +29,7 @@ class HTTPBaseResource(object):
 
 class HTTPRequest(object):
     """
-    Base HTTP Requester.
+    HTTP Requester.
     """
 
     def __init__(self, method, secret_key=None, resource=None, api_version=None):
@@ -48,11 +48,6 @@ class HTTPRequest(object):
         return url
 
     def request(self, payload):
-        """
-        Send request.
-        calls:
-           - request_handler
-        """
         url = self.full_url
         headers, request_method_func = self.pre_request_handler()
         response = request_method_func(url=url, json=payload, headers=headers)
@@ -93,34 +88,21 @@ class HTTPRequest(object):
         return headers, getattr(requests, self.method)
 
     def request_headers(self):
-        """
-        Set headers.
-        :return:
-        """
+
         headers = self._request_agent_headers()
         headers["Authorization"] = self.auth_header
         return headers
 
     def request_handler(self):
-        """
-        Handle exceptions
-        calls:
-            - request_error_handler
-        """
+
         pass
 
     def request_error_handler(self):
-        """
-        Handle Resources' errors.
-        calls:
-            - request_error_mapper and handle errors of any kind.
-        """
+
         pass
 
     def request_error_mapper(self):
-        """
-        Request Error mapper based on response error code/message.
-        """
+
         pass
 
 
