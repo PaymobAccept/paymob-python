@@ -75,7 +75,7 @@ def create(**kwargs):
     }
 
     intent = requests.post(
-        NEXT_INTENT_URL,
+        paymob.api_base_url() + "intentions/create/",
         json=intention_payload,
         headers={"Authorization": f"Token {paymob.secret_key}"},
     )
