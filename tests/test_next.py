@@ -14,3 +14,9 @@ class TestNextSetup(object):
         Test next scope.
         """
         assert paymob.secret_key == "HelloWorld"
+
+    def test_api_next_url(self):
+        """
+        Test Next API URL
+        """
+        assert paymob.api_base_url() == "http://127.0.0.1:49152/api/next/v1"
