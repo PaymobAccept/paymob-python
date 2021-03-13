@@ -26,5 +26,5 @@ def api_base_url():
 
     :return: str api_next_url
     """
-    api_next_url: str = "http://127.0.0.1:49152/api/next"
+    api_next_url = "http://127.0.0.1:49152/api/next"
     return api_next_url
