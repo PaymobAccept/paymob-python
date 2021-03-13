@@ -14,23 +14,51 @@ class CreateResourceMixin(object):
 
 
 class UpdateResourceMixin(object):
-    def update(self, secret_key=None, **kwargs):
-        pass
+    @classmethod
+    def update(cls, secret_key=None, **kwargs):
+        request = http.HTTPRequest(
+            resource=cls,
+            method="post",
+            secret_key=secret_key,
+        )
+        request = request.request(payload=kwargs)
+        return request
 
 
 class DeleteResourceMixin(object):
-    def delete(self, secret_key=None, **kwargs):
-        pass
+    @classmethod
+    def delete(cls, secret_key=None, **kwargs):
+        request = http.HTTPRequest(
+            resource=cls,
+            method="delete",
+            secret_key=secret_key,
+        )
+        request = request.request(payload=kwargs)
+        return request
 
 
 class RetrieveResourceMixin(object):
-    def retrieve(self, secret_key=None, **kwargs):
-        pass
+    @classmethod
+    def retrieve(cls, secret_key=None, **kwargs):
+        request = http.HTTPRequest(
+            resource=cls,
+            method="get",
+            secret_key=secret_key,
+        )
+        request = request.request(payload=kwargs)
+        return request
 
 
 class ListResourceMixin(object):
-    def list(self, secret_key=None, **kwargs):
-        pass
+    @classmethod
+    def list(cls, secret_key=None, **kwargs):
+        request = http.HTTPRequest(
+            resource=cls,
+            method="get",
+            secret_key=secret_key,
+        )
+        request = request.request(payload=kwargs)
+        return request
 
 
 class GenericResourceMixin(
