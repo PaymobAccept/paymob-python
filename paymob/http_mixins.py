@@ -1,6 +1,5 @@
 import requests
 
-import paymob
 from paymob.utils import api_base_url
 
 
@@ -9,7 +8,9 @@ class CreateResourceMixin(object):
         request = requests.post(
             api_base_url() + "intentions/create/",
             json=kwargs,
-            headers={"Authorization": f"Token {paymob.secret_key}"},
+            headers={
+                "Authorization": "Token {secret_key}".format(secret_key=secret_key)
+            },
         )
         intent_response = request.json()
         print(intent_response)
