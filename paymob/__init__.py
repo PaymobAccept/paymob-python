@@ -1,3 +1,3 @@
-secret_key: str = None
-api_version: str = "v1"
+secret_key = None
+api_version = "v1"
 from .accept import *  # noqa
