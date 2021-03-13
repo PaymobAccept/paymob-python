@@ -20,3 +20,9 @@ class TestNextSetup(object):
         Test Next API URL
         """
         assert paymob.api_base_url() == "http://127.0.0.1:49152/api/next/v1"
+
+    def test_api_version(self):
+        """
+        Test Next API version
+        """
+        assert paymob.api_version == "v1"
