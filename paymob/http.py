@@ -49,8 +49,10 @@ class HTTPRequest(object):
 
     def request(self, payload):
         url = self.full_url
-        headers, request_method_func = self.pre_request_handler()
-        response = request_method_func(url=url, json=payload, headers=headers)
+        response = self.pre_request_handler(url=url, payload=payload)
+        # TODO: ADD LOGGER FOR RESPONSE STATUS CODE AND URL PATH INFO
+        # TODO: ADD LOGGER FOR RESPONSE BODY DEBUG
+        # TODO: ADD LOGGER FOR REQUEST-ID HEADER DEBUG
         response = response.json()
         return response
 
@@ -83,9 +85,13 @@ class HTTPRequest(object):
         }
         return user_agent_header
 
-    def pre_request_handler(self):
+    def pre_request_handler(self, url, payload):
         headers = self.request_headers()
-        return headers, getattr(requests, self.method)
+        # TODO: ADD LOGGER FOR URL PATH INFO
+        # TODO: ADD LOGGER FOR REQUEST METHOD INFO
+        if self.method in ["get", "options", "delete"]:
+            return getattr(requests, self.method)(url=url, headers=headers)
+        return getattr(requests, self.method)(url=url, headers=headers, json=payload)
 
     def request_headers(self):
 
