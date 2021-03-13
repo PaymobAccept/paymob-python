@@ -27,4 +27,4 @@ class TestHttpResources(object):
         with pytest.raises(NotImplementedError) as exception:
             intention.resource_url()
 
-            assert "must have a RESOURCE_URI string." in exception.value
+        assert "must have a RESOURCE_URI string." in str(exception.value)
