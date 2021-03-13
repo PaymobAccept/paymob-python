@@ -94,15 +94,12 @@ class HTTPRequest(object):
         return headers
 
     def request_handler(self):
-
         pass
 
     def request_error_handler(self):
-
         pass
 
     def request_error_mapper(self):
-
         pass
 
 
