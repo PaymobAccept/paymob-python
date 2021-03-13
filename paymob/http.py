@@ -20,10 +20,6 @@ class HTTPBaseResource(object):
         return resource_to_url(cls.RESOURCE_URI)
 
 
-class GenericHTTPResource(GenericResourceMixin, HTTPBaseResource):
-    pass
-
-
 class HTTPRequest(object):
     """
     Base HTTP Requester.
@@ -70,3 +66,7 @@ class HTTPRequest(object):
         Request Error mapper based on response error code/message.
         """
         pass
+
+
+class GenericHTTPResource(GenericResourceMixin, HTTPBaseResource):
+    pass
