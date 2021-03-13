@@ -1,6 +1,7 @@
 import pytest
 
 import paymob
+from paymob.utils import api_base_url
 
 
 @pytest.fixture(autouse=True)
@@ -19,7 +20,7 @@ class TestNextSetup(object):
         """
         Test Next API URL
         """
-        assert paymob.api_base_url() == "http://127.0.0.1:49152/api/next/v1"
+        assert api_base_url() == "http://127.0.0.1:49152/api/next"
 
     def test_api_version(self):
         """

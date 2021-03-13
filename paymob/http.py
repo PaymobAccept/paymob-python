@@ -1,25 +1,27 @@
+import paymob
+from paymob.http_mixins import GenericResourceMixin
 from paymob.utils import resource_to_url
 
 
-class HTTPResource(object):
+class HTTPBaseResource(object):
     """
     Base HTTP Resource class
     """
 
-    def get_http_url(self):
+    RESOURCE_URI = None
+
+    @classmethod
+    def resource_url(cls):
         """
         Resource URL
         """
-        assert not self.RESOURCE, NotImplementedError(
-            "Resource class must have a RESOURCE string."
-        )
-        return resource_to_url(self.RESOURCE)
+        if not cls.RESOURCE_URI:
+            raise NotImplementedError("Resource class must have a RESOURCE_URI string.")
+        return resource_to_url(cls.RESOURCE_URI)
 
-    def get_headers(self):
-        """
-        Base request headers.
-        """
-        pass
+
+class GenericHTTPResource(GenericResourceMixin, HTTPBaseResource):
+    pass
 
 
 class HTTPRequest(object):
@@ -27,14 +29,23 @@ class HTTPRequest(object):
     Base HTTP Requester.
     """
 
-    def __init__(self, secret_key: str):
+    def __init__(self, secret_key, resource=None, api_version=None):
         self.secret_key = secret_key
+        self.resource = resource
+        self.api_version = api_version or paymob.api_version
 
     def request(self):
         """
         Send request.
         calls:
            - request_handler
+        """
+        pass
+
+    def request_headers(self):
+        """
+        Set headers.
+        :return:
         """
         pass
 
