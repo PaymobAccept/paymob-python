@@ -170,6 +170,6 @@ bower_components/
 node_modules/
 
 # Marketplace
-next-marketplace
+paymob-marketplace
 
 uwsgi.ini
