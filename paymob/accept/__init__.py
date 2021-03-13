@@ -1,2 +1,1 @@
-# flake8: noqa
-from .api import intention
+from .api import intention  # noqa
