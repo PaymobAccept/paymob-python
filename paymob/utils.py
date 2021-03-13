@@ -1,13 +1,9 @@
-from paymob import api_version
-
-
-def next_api_version(version=None):
+def next_api_version():
     """
     Next API version handler.
-    :param version: str
     :return: str
     """
-    return api_version if not version else "v1"
+    return "v1"
 
 
 def resource_to_url(resource):
@@ -26,5 +22,5 @@ def api_base_url():
 
     :return: str api_next_url
     """
-    api_next_url = "http://127.0.0.1:49152/api/next"
+    api_next_url = "http://127.0.0.1:8000/api/next"
     return api_next_url
