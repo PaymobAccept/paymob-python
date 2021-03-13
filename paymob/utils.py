@@ -16,7 +16,9 @@ def resource_to_url(resource):
     :param resource: str
     :return: str
     """
-    return f"/{next_api_version()}/{resource}/"
+    return "/{next_api_version}/{resource}/".format(
+        next_api_version=next_api_version(), resource=resource
+    )
 
 
 def api_base_url():
