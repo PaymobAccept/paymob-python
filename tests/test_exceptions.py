@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from next.exceptions import UserNotAllowed
+from paymob.exceptions import UserNotAllowed
 
 
 class TestUserNotAllowed(object):

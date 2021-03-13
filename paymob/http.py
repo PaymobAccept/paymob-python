@@ -1,4 +1,4 @@
-from next.utils import resource_to_url
+from paymob.utils import resource_to_url
 
 
 class HTTPResource(object):

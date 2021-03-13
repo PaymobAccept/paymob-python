@@ -1,11 +1,11 @@
 import pytest
 
-import next
+import paymob
 
 
 @pytest.fixture(autouse=True)
 def setup_next():
-    next.secret_key = "HelloWorld"
+    paymob.secret_key = "HelloWorld"
 
 
 class TestNextSetup(object):
@@ -13,4 +13,4 @@ class TestNextSetup(object):
         """
         Test next scope.
         """
-        assert next.secret_key == "HelloWorld"
+        assert paymob.secret_key == "HelloWorld"

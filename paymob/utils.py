@@ -1,4 +1,4 @@
-from next import API_VERSION
+from paymob import API_VERSION
 
 
 def next_api_version(version: str = None) -> str:
