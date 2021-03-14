@@ -1,7 +1,8 @@
 import pytest
 
 import paymob
-from paymob.http import GenericHTTPResource
+from paymob.http import HTTPBaseResource
+from paymob.http_mixins import CreateResourceMixin
 
 
 @pytest.fixture(autouse=True)
@@ -9,11 +10,11 @@ def setup_next():
     paymob.secret_key = "HelloWorld"
 
 
-class IntentionResource(GenericHTTPResource):
+class IntentionResource(CreateResourceMixin, HTTPBaseResource):
     RESOURCE_PATH = "intention"
 
 
-class IntentionResourceWithoutURI(GenericHTTPResource):
+class IntentionResourceWithoutURI(CreateResourceMixin, HTTPBaseResource):
     pass
 
 

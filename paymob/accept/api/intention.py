@@ -1,5 +1,6 @@
-from paymob.http import GenericHTTPResource
+from paymob.http import HTTPBaseResource
+from paymob.http_mixins import CreateResourceMixin
 
 
-class Intention(GenericHTTPResource):
+class Intention(CreateResourceMixin, HTTPBaseResource):
     RESOURCE_PATH = "intentions"

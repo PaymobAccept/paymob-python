@@ -4,7 +4,6 @@ import platform
 import requests
 
 import paymob
-from paymob.http_mixins import GenericResourceMixin
 from paymob.utils import resource_to_url, api_base_url, next_api_version
 
 
@@ -107,7 +106,3 @@ class HTTPRequest(object):
 
     def request_error_mapper(self):
         pass
-
-
-class GenericHTTPResource(GenericResourceMixin, HTTPBaseResource):
-    pass
