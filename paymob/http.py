@@ -4,6 +4,7 @@ import platform
 import requests
 
 import paymob
+from paymob.logging import log
 from paymob.utils import resource_to_url, api_base_url, next_api_version
 
 
@@ -48,11 +49,19 @@ class HTTPRequest(object):
 
     def request(self, payload):
         url = self.full_url
-        response = self.pre_request_handler(url=url, payload=payload)
         # TODO: ADD LOGGER FOR RESPONSE STATUS CODE AND URL PATH INFO
         # TODO: ADD LOGGER FOR RESPONSE BODY DEBUG
         # TODO: ADD LOGGER FOR REQUEST-ID HEADER DEBUG
-        response = response.json()
+        log(
+            "Sending Request To Paymob, Request URL:\
+             {url}, Request Method {method}".format(
+                url=url, method=self.method
+            ),
+            "info",
+        )
+        response = self.pre_request_handler(url=url, payload=payload)
+        response = self.response_handler(response)
+        # TODO: Handle JSON Exceptions
         return response
 
     def _request_agent_headers(self):
@@ -93,16 +102,29 @@ class HTTPRequest(object):
         return getattr(requests, self.method)(url=url, headers=headers, json=payload)
 
     def request_headers(self):
-
         headers = self._request_agent_headers()
         headers["Authorization"] = self.auth_header
         return headers
 
-    def request_handler(self):
+    def response_handler(self, response):
+        response_headers = self._response_header_handler(response)
+        # TODO: LOG REQUEST ID
+        if "X-Paymob-Request-ID" in response_headers:
+            paymob_request_id = response_headers["X-Paymob-Request-ID"]
+            log(
+                "Paymob Request Trace ID - {paymob_request_id}".format(
+                    paymob_request_id=paymob_request_id
+                ),
+                "debug",
+            )
+        return response.json()
+
+    def response_error_handler(self):
         pass
 
-    def request_error_handler(self):
+    def response_error_mapper(self):
         pass
 
-    def request_error_mapper(self):
-        pass
+    def _response_header_handler(self, response):
+        headers = response.headers
+        return headers
