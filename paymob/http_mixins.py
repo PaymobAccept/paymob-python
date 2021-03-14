@@ -18,7 +18,19 @@ class UpdateResourceMixin(object):
     def update(cls, secret_key=None, **kwargs):
         request = http.HTTPRequest(
             resource=cls,
-            method="post",
+            method="put",
+            secret_key=secret_key,
+        )
+        request = request.request(payload=kwargs)
+        return request
+
+
+class PatchResourceMixin(object):
+    @classmethod
+    def patch(cls, secret_key=None, **kwargs):
+        request = http.HTTPRequest(
+            resource=cls,
+            method="patch",
             secret_key=secret_key,
         )
         request = request.request(payload=kwargs)
