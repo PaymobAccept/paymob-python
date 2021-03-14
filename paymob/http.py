@@ -59,6 +59,7 @@ class HTTPRequest(object):
             ),
             "info",
         )
+        # TODO: TRY CATCH
         response = self.pre_request_handler(url=url, payload=payload)
         response = self.response_handler(response)
         # TODO: Handle JSON Exceptions
