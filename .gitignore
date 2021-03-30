@@ -169,7 +169,5 @@ client/
 bower_components/
 node_modules/
 
-# Marketplace
-paymob-marketplace
 
 uwsgi.ini
