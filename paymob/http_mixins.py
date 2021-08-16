@@ -4,6 +4,12 @@ from paymob import http
 class CreateResourceMixin(object):
     @classmethod
     def create(cls, secret_key=None, **kwargs):
+        """
+        Create resource
+
+        :param secret_key: Paymob's secret key
+        :param kwargs: dict
+        """
         request = http.HTTPRequest(
             resource=cls,
             method="post",
@@ -16,6 +22,12 @@ class CreateResourceMixin(object):
 class UpdateResourceMixin(object):
     @classmethod
     def update(cls, secret_key=None, **kwargs):
+        """
+        Update resource
+
+        :param secret_key: Paymob's secret key
+        :param kwargs: dict
+        """
         request = http.HTTPRequest(
             resource=cls,
             method="put",
@@ -28,6 +40,12 @@ class UpdateResourceMixin(object):
 class PatchResourceMixin(object):
     @classmethod
     def patch(cls, secret_key=None, **kwargs):
+        """
+        Patch resource
+
+        :param secret_key: Paymob's secret key
+        :param kwargs: dict
+        """
         request = http.HTTPRequest(
             resource=cls,
             method="patch",
@@ -40,6 +58,12 @@ class PatchResourceMixin(object):
 class DeleteResourceMixin(object):
     @classmethod
     def delete(cls, secret_key=None, **kwargs):
+        """
+        Delete resource
+
+        :param secret_key: Paymob's secret key
+        :param kwargs: dict
+        """
         request = http.HTTPRequest(
             resource=cls,
             method="delete",
@@ -52,6 +76,12 @@ class DeleteResourceMixin(object):
 class RetrieveResourceMixin(object):
     @classmethod
     def retrieve(cls, secret_key=None, **kwargs):
+        """
+        Retrieve resource
+
+        :param secret_key: Paymob's secret key
+        :param kwargs: dict
+        """
         request = http.HTTPRequest(
             resource=cls,
             method="get",
@@ -64,6 +94,12 @@ class RetrieveResourceMixin(object):
 class ListResourceMixin(object):
     @classmethod
     def list(cls, secret_key=None, **kwargs):
+        """
+        List resource
+
+        :param secret_key: Paymob's secret key
+        :param kwargs: dict
+        """
         request = http.HTTPRequest(
             resource=cls,
             method="get",
@@ -80,4 +116,11 @@ class GenericResourceMixin(
     RetrieveResourceMixin,
     ListResourceMixin,
 ):
+    """
+    Generic Create, Update, Delete, List resource
+
+    :param secret_key: Paymob's secret key
+    :param kwargs: dict
+    """
+
     pass
