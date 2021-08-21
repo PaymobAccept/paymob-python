@@ -3,4 +3,4 @@ from paymob.http_mixins import CreateResourceMixin
 
 
 class Intention(CreateResourceMixin, HTTPBaseResource):
-    RESOURCE_PATH = "intentions"
+    RESOURCE_PATH = "intention"
