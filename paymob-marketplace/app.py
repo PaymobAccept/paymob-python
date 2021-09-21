@@ -5,10 +5,10 @@ from flask_cors import CORS
 
 import paymob
 
-paymob.secret_key = (
-    "skt_a2ed304e7b12bbdcf41617ed6eb52f7a63580bd09a4579a2b253f199999e58e5"
-)
-
+#paymob.secret_key = (
+#    "skt_a67ba5b0a9cfb19e37a685f9216ebf456ddc63aa9706d21c370571269689191b"
+#)
+paymob.secret_key = 'skl_523053414432477c0ba43c1005a57230db53c56f577fbdc1fe93211ed3b53838'
 app = Flask(__name__)
 CORS(app)
 
@@ -18,12 +18,26 @@ logging.basicConfig(
 logging.getLogger("paymob-next")
 
 
-@app.route("/secret", methods=["GET"])
+@app.route("/marketplace/secret/", methods=["GET"])
 def secret():
     intent = paymob.accept.Intention.create(
-        amount=1000,
+        amount="100",
         currency="EGP",
-        payment_methods=["card", "kiosk"],
+        payment_methods=["card"],
+        items= [
+    {
+        "name": "ASC1515",
+        "amount": "50",
+        "description": "Smart Watch",
+        "quantity": "1"
+    },
+    { 
+        "name": "ERT6565",
+        "amount": "50",
+        "description": "Power Bank",
+        "quantity": "1"
+    }
+    ],
         billing_data={
             "apartment": "803",
             "email": "claudette09@exa.com",
@@ -31,7 +45,7 @@ def secret():
             "first_name": "Clifford",
             "street": "Ethan Land",
             "building": "8028",
-            "phone_number": "+86(8)9135210487",
+            "phone_number": "9135210487",
             "shipping_method": "PKG",
             "postal_code": "01898",
             "city": "Jaskolskiburgh",
@@ -39,14 +53,14 @@ def secret():
             "last_name": "Nicolas",
             "state": "Utah",
         },
+        customer={"first_name": "misrax", "last_name": "misrax", "email": "misrax@misrax.com"},
         delivery_needed=False,
     )
-    print(intent)
     return jsonify(client_secret=intent.get("client_secret"))
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=10000)
+    app.run(debug=True, port=8000)
 
 """
 {
