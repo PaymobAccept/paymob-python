@@ -22,5 +22,6 @@ def api_base_url():
 
     :return: str api_next_url
     """
-    api_next_url = "http://127.0.0.1:8000/api/next"
+    api_next_url = "https://next-stg.paymobsolutions.com/next/api"
     return api_next_url
+
