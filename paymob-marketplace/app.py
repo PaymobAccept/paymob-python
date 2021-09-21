@@ -5,9 +5,6 @@ from flask_cors import CORS
 
 import paymob
 
-#paymob.secret_key = (
-#    "skt_a67ba5b0a9cfb19e37a685f9216ebf456ddc63aa9706d21c370571269689191b"
-#)
 paymob.secret_key = 'skl_523053414432477c0ba43c1005a57230db53c56f577fbdc1fe93211ed3b53838'
 app = Flask(__name__)
 CORS(app)
