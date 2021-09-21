@@ -7,7 +7,7 @@ setup(name='paymob',
       description='Your Paymob SDK in python',
       author='Paymob',
       author_email='maysragamal@paymob.com',
-      url='',
+      url='https://github.com/PaymobAccept/paymob-python',
       packages=['paymob'],
       install_requires=['requests']
      )
