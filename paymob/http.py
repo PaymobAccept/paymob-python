@@ -47,7 +47,7 @@ class HTTPRequest(object):
         url = api_base_url() + self.resource.resource_url()
         return url
 
-    def request(self, payload):
+    def request(self, payload=None,reference=None, querystr=None):
         url = self.full_url
         # TODO: ADD LOGGER FOR RESPONSE STATUS CODE AND URL PATH INFO
         # TODO: ADD LOGGER FOR RESPONSE BODY DEBUG
@@ -60,7 +60,7 @@ class HTTPRequest(object):
             "info",
         )
         # TODO: TRY CATCH
-        response = self.pre_request_handler(url=url, payload=payload)
+        response = self.pre_request_handler(reference=reference, url=url, payload=payload, querystr=querystr)
         response = self.response_handler(response)
         # TODO: Handle JSON Exceptions
         return response
@@ -94,12 +94,15 @@ class HTTPRequest(object):
         }
         return user_agent_header
 
-    def pre_request_handler(self, url, payload):
+    def pre_request_handler(self, url, payload, reference,querystr):
         headers = self.request_headers()
         # TODO: ADD LOGGER FOR URL PATH INFO
         # TODO: ADD LOGGER FOR REQUEST METHOD INFO
+
+        if reference is not None:
+            url= url +reference
         if self.method in ["get", "options", "delete"]:
-            return getattr(requests, self.method)(url=url, headers=headers)
+            return getattr(requests, self.method)(url=url, headers=headers, params=querystr)
         return getattr(requests, self.method)(url=url, headers=headers, json=payload)
 
     def request_headers(self):
