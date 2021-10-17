@@ -3,7 +3,7 @@ from paymob import http
 
 class CreateResourceMixin(object):
     @classmethod
-    def create(cls, secret_key=None, **kwargs):
+    def create(cls, secret_key=None, path=None, **kwargs):
         """
         Create resource
 
@@ -57,7 +57,7 @@ class PatchResourceMixin(object):
 
 class DeleteResourceMixin(object):
     @classmethod
-    def delete(cls, secret_key=None, **kwargs):
+    def delete(cls, reference, secret_key=None, **kwargs):
         """
         Delete resource
 
@@ -69,13 +69,13 @@ class DeleteResourceMixin(object):
             method="delete",
             secret_key=secret_key,
         )
-        request = request.request(payload=kwargs)
+        request = request.request(reference=reference)
         return request
 
 
 class RetrieveResourceMixin(object):
     @classmethod
-    def retrieve(cls, secret_key=None, **kwargs):
+    def retrieve(cls, reference ,secret_key=None, **kwargs):
         """
         Retrieve resource
 
@@ -87,7 +87,7 @@ class RetrieveResourceMixin(object):
             method="get",
             secret_key=secret_key,
         )
-        request = request.request(payload=kwargs)
+        request = request.request(reference=reference)
         return request
 
 
@@ -105,7 +105,7 @@ class ListResourceMixin(object):
             method="get",
             secret_key=secret_key,
         )
-        request = request.request(payload=kwargs)
+        request = request.request(querystr=kwargs)
         return request
 
 
