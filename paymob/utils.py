@@ -1,8 +1,14 @@
+import paymob
+
+
 def next_api_version():
     """
     Next API version handler.
     :return: str
     """
+    if paymob.next_version is not None:
+        return paymob.next_version
+
     return "v1"
 
 
@@ -23,5 +29,9 @@ def api_base_url():
     :return: str api_next_url
     """
     api_next_url = "https://next-stg.paymobsolutions.com/next/api"
+
+    if paymob.base_url is not None:
+        return paymob.base_url
+
     return api_next_url
 

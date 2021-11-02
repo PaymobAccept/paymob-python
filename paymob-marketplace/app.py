@@ -8,9 +8,8 @@ import paymob
 #live
 paymob.secret_key = 'skl_eb7e7ac5117dcd6c0b7539a635f61764aca615bd3b63051606b845c30db3bff8'
 
-#test
-
-#paymob.secret_key = 'skt_c71983ae3738ba5eab3fd2a8b480992fe8927bba9dc34300049b840b6d3503cd'
+paymob.base_url = "https://next-stg.paymobsolutions.com/next/api"
+paymob.next_version = "v1"
 
 
 app = Flask(__name__)
