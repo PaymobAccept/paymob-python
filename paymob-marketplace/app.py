@@ -149,7 +149,51 @@ def capture():
     )
     return capture_intent
 
+@app.route("/marketplace/tokenpay/", methods=['GET'])
+def token_pay():
+    savedpay= paymob.accept.TokenPay.create(
 
+            client_secret = "ckl_f0390954c1cbed9ac8e7f86cd2902ea69",
+            token_id = "8316788",
+            customer_id= "c26e2788-d367-4789-9b68-c431943b1d9a",
+            method= "card-moto",
+            payment_method_id= 1599970
+
+
+    )
+    log(
+        "Payment Response - {savedpay}".format(
+            savedpay=savedpay
+        ),
+        "info",
+    )
+    return savedpay
+
+@app.route("/marketplace/customer_details/", methods=['GET'])
+def customer_retrieve():
+    customer= paymob.accept.Customer.retrieve(
+     reference= "69260c5f-101c-49d9-a509-368c593b9a99"
+    )
+    log(
+        "Customer Details Response - {customer}".format(
+            customer=customer
+        ),
+        "info",
+    )
+    return customer
+
+@app.route("/marketplace/customers_list/", methods=['GET'])
+def customer_list():
+    customers= paymob.accept.Customer.list(
+
+    )
+    log(
+        "Customers List Response - {customers}".format(
+            customers=customers
+        ),
+        "info",
+    )
+    return customers
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
