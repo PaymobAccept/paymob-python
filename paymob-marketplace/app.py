@@ -5,17 +5,7 @@ from flask_cors import CORS
 
 import paymob
 
-'''
-NEXT Keys
 
-{
- "test_secret_key": "skt_62105063312adfdaf5b2f66bdcca929b0905660004821087577b51970880a12d",
- "live_secret_key": "skl_726d35c37defcffd4edf9d3743228cd5535620be7111fc3387e317ef9c0dbcba",
- "live_public_key": "pkl_lXlWBgvsswAREP49avMXbUGMYKwWmcim", 
- "test_public_key": "pkt_oHzgEj0NQhoqCcxjHzLsVYkJ7QvmoFOV"
- 
- }
-'''
 #live secret key
 paymob.secret_key = 'skl_51bf49f38681a7d859fbb7a48d43df747877e66e906a1851efad3c8f427c1082'
 
@@ -158,6 +148,8 @@ def capture():
         "info",
     )
     return capture_intent
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
