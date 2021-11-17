@@ -5,10 +5,24 @@ from flask_cors import CORS
 
 import paymob
 
-#live
-paymob.secret_key = 'skl_eb7e7ac5117dcd6c0b7539a635f61764aca615bd3b63051606b845c30db3bff8'
+'''
+NEXT Keys
 
-paymob.base_url = "https://next-stg.paymobsolutions.com/next/api"
+{
+ "test_secret_key": "skt_62105063312adfdaf5b2f66bdcca929b0905660004821087577b51970880a12d",
+ "live_secret_key": "skl_726d35c37defcffd4edf9d3743228cd5535620be7111fc3387e317ef9c0dbcba",
+ "live_public_key": "pkl_lXlWBgvsswAREP49avMXbUGMYKwWmcim", 
+ "test_public_key": "pkt_oHzgEj0NQhoqCcxjHzLsVYkJ7QvmoFOV"
+ 
+ }
+'''
+#live secret key
+paymob.secret_key = 'skl_51bf49f38681a7d859fbb7a48d43df747877e66e906a1851efad3c8f427c1082'
+
+#test secret key
+#paymob.secret_key = 'skt_910f3e11fce0ea90e2af1683bab7439108cdb0e36333377f52422932ede25ac0'
+
+paymob.base_url = "https://flashapi.paymob.com"
 paymob.next_version = "v1"
 
 
@@ -24,19 +38,19 @@ CORS(app)
 @app.route("/marketplace/secret/", methods=['GET'])
 def secret():
     intent = paymob.accept.Intention.create(
-        amount="300",
+        amount="150",
         currency="EGP",
-        payment_methods=["card","kiosk"],
+        payment_methods=[1562662,1560645],
         items= [
     {
         "name": "ASC1124",
-        "amount": "150",
+        "amount": "50",
         "description": "Smart Watch",
         "quantity": "1"
     },
     {
         "name": "ERT6565",
-        "amount": "150",
+        "amount": "100",
         "description": "Power Bank",
         "quantity": "1"
     }
@@ -48,7 +62,7 @@ def secret():
             "first_name": "Mohamed",
             "street": "Ethan Land",
             "building": "8028",
-            "phone_number": "9135210487",
+            "phone_number": "+201010101010",
             "shipping_method": "PKG",
             "postal_code": "01898",
             "city": "Jaskolskiburgh",
@@ -56,13 +70,19 @@ def secret():
             "last_name": "Nicolas",
             "state": "Utah",
         },
-        customer={"first_name": "misrax", "last_name": "misrax", "email": "misrax@misrax.com"},
+        customer={
+            "first_name": "youssef", "last_name": "tarek", "email": "youssef@tarek.com","phone_number":"+201010101010",
+            "extras":{
+                "surname":"Abdelsattar"
+            }
+
+        },
         delivery_needed=False,
         extras= {
             "name": "test",
             "age": "30"
         },
-        special_reference= "Special reference test 4"
+        #special_reference= "Special reference test 4"
     )
     log(
         "Intention Creation Response - {intent}".format(
@@ -75,7 +95,7 @@ def secret():
 @app.route("/marketplace/retrieve/", methods=['GET'])
 def retrieve():
     retrieve_intent= paymob.accept.Intention.retrieve(
-        reference="0cc46c79-e377-4c43-91c4-95f7a2fca151",
+        reference="f4ec76dd-214a-4af6-997c-d05ee62e4140",
     )
     log(
         "Retrieve Response - {retrieve_intent}".format(
@@ -100,8 +120,8 @@ def list():
 @app.route("/marketplace/refund/", methods=['GET'])
 def refund():
     refund_intent = paymob.accept.Refund.create(
-        payment_reference= "14394788",
-        amount_cents="300"
+        payment_reference= "17653797",
+        amount_cents="50"
     )
     log(
         "Refund Response - {refund_intent}".format(
@@ -115,7 +135,7 @@ def refund():
 @app.route("/marketplace/void/", methods=['GET'])
 def void():
     void_intent= paymob.accept.Void.create(
-        payment_reference="14394788"
+        payment_reference="17726666"
     )
     log(
         "Intention Voided - {void_intent}".format(
@@ -128,8 +148,8 @@ def void():
 @app.route("/marketplace/capture/", methods=['GET'])
 def capture():
     capture_intent= paymob.accept.Capture.create(
-        payment_reference="14394788",
-        amount_cents="300"
+        payment_reference="17653797",
+        amount_cents="50"
     )
     log(
         "Intention Captured - {capture_intent}".format(
