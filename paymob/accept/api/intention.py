@@ -6,3 +6,5 @@ class Intention(CreateResourceMixin, RetrieveResourceMixin, ListResourceMixin, H
     RESOURCE_PATH = "intention"
 
 
+
+

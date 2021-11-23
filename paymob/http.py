@@ -100,7 +100,7 @@ class HTTPRequest(object):
         # TODO: ADD LOGGER FOR REQUEST METHOD INFO
 
         if reference is not None:
-            url= url +reference
+            url= url + reference
         if self.method in ["get", "options", "delete"]:
             return getattr(requests, self.method)(url=url, headers=headers, params=querystr)
         return getattr(requests, self.method)(url=url, headers=headers, json=payload)

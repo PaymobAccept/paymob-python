@@ -28,9 +28,9 @@ CORS(app)
 @app.route("/marketplace/secret/", methods=['GET'])
 def secret():
     intent = paymob.accept.Intention.create(
-        amount="150",
+        amount="100",
         currency="EGP",
-        payment_methods=[1562662,1560645],
+        payment_methods=[1599970],
         items= [
     {
         "name": "ASC1124",
@@ -40,7 +40,7 @@ def secret():
     },
     {
         "name": "ERT6565",
-        "amount": "100",
+        "amount": "50",
         "description": "Power Bank",
         "quantity": "1"
     }
@@ -125,7 +125,7 @@ def refund():
 @app.route("/marketplace/void/", methods=['GET'])
 def void():
     void_intent= paymob.accept.Void.create(
-        payment_reference="17726666"
+        payment_reference="18157980"
     )
     log(
         "Intention Voided - {void_intent}".format(
@@ -149,13 +149,15 @@ def capture():
     )
     return capture_intent
 
-@app.route("/marketplace/tokenpay/", methods=['GET'])
-def token_pay():
-    savedpay= paymob.accept.TokenPay.create(
+@app.route("/marketplace/paytoken/", methods=['GET'])
+def pay_token():
 
-            client_secret = "ckl_f0390954c1cbed9ac8e7f86cd2902ea69",
-            token_id = "8316788",
-            customer_id= "c26e2788-d367-4789-9b68-c431943b1d9a",
+    savedpay= paymob.accept.PayToken.create(
+
+            client_secret = "ckl_77bacfb1a13e04786f7a6226b6d8e244",
+            token_id="123456",
+            token="e29ac6d6676da32f228c7fe5a1a111694978f14ea686915f42fa53e93",
+            customer_id= "baaba246-895c-4dfd-877b-c1ae10069188",
             method= "card-moto",
             payment_method_id= 1599970
 
