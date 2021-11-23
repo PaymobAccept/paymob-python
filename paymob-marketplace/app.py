@@ -149,12 +149,13 @@ def capture():
     )
     return capture_intent
 
-@app.route("/marketplace/tokenpay/", methods=['GET'])
-def token_pay():
-    savedpay= paymob.accept.TokenPay.create(
+@app.route("/marketplace/paytoken/", methods=['GET'])
+def paytoken():
+    savedpay= paymob.accept.PayToken.create(
 
             client_secret = "ckl_f0390954c1cbed9ac8e7f86cd2902ea69",
             token_id = "8316788",
+            token = "e29ac6d6676da32f28c7fe5a1a111694978f14ea686915f42fa53e93",
             customer_id= "c26e2788-d367-4789-9b68-c431943b1d9a",
             method= "card-moto",
             payment_method_id= 1599970
