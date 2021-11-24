@@ -28,7 +28,7 @@ def api_base_url():
 
     :return: str api_next_url
     """
-    api_next_url = "https://next-stg.paymobsolutions.com/next/api"
+    api_next_url = "https://flashapi.paymob.com"
 
     if paymob.base_url is not None:
         return paymob.base_url
