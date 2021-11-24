@@ -9,12 +9,6 @@ import paymob
 #live secret key
 paymob.secret_key = 'skl_51bf49f38681a7d859fbb7a48d43df747877e66e906a1851efad3c8f427c1082'
 
-#test secret key
-#paymob.secret_key = 'skt_910f3e11fce0ea90e2af1683bab7439108cdb0e36333377f52422932ede25ac0'
-
-paymob.base_url = "https://flashapi.paymob.com"
-paymob.next_version = "v1"
-
 
 app = Flask(__name__)
 CORS(app)
