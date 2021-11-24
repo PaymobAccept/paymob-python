@@ -1,6 +1,5 @@
 from paymob.http import HTTPBaseResource, HTTPRequest
 from paymob.http_mixins import CreateResourceMixin, RetrieveResourceMixin, ListResourceMixin
-import json
 
 class Customer(CreateResourceMixin, RetrieveResourceMixin, ListResourceMixin, HTTPBaseResource):
     RESOURCE_PATH = "customer"
@@ -13,8 +12,9 @@ class Customer(CreateResourceMixin, RetrieveResourceMixin, ListResourceMixin, HT
         :param secret_key: Paymob's secret key
         :param kwargs: dict
         """
+
         if reference is None or reference == "":
-            return "You need to add a transaction reference."
+            return {"reference": "Reference must contain a valid string."}
 
         request = HTTPRequest(
             resource=cls,
